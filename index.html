@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavily Lotus</title>
+    <!-- Favicon link -->
+    <link rel="icon" type="image/jpeg" href="images/flower7.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --deep-purple: #73589b;
+            --soft-purple: #ab95c8;
+            --gold: #e2b328;
+            --cream: #fff9ed;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+        }
+
+        .btn-primary {
+            background-color: var(--deep-purple);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--soft-purple);
+        }
+
+        .text-deep {
+            color: var(--deep-purple);
+        }
+
+        .text-soft {
+            color: var(--soft-purple);
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+
+        .bg-cream {
+            background-color: var(--cream);
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--deep-purple);
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--soft-purple);
+            border-radius: 10px;
+        }
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            aspect-ratio: 1 / 1;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .logo-shadow {
+            filter: drop-shadow(0 10px 15px rgba(115, 88, 155, 0.15));
+        }
+
+        .animate-subtle-bounce {
+            animation: subtle-bounce 3s infinite ease-in-out;
+        }
+
+        @keyframes subtle-bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--deep-purple);
+            font-size: 0.65rem;
+            padding: 4px 12px;
+            border-radius: 99px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icon-wrapper {
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-purple);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon-wrapper:hover {
+            background-color: var(--deep-purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .partner-img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            margin: 0 auto 1.5rem auto;
+            transition: transform 0.3s ease;
+            background-color: transparent;
+        }
+
+        .partner-card:hover .partner-img {
+            transform: scale(1.1);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border-width: 1px;
+            border-color: rgba(171, 149, 200, 0.3);
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: transparent;
+            box-shadow: 0 0 0 2px var(--soft-purple);
+        }
+
+        .required-star {
+            color: var(--gold);
+            margin-left: 2px;
+        }
+
+        .form-checkbox {
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 0.25rem;
+            border: 1px solid var(--soft-purple);
+            accent-color: var(--deep-purple);
+            cursor: pointer;
+        }
+
+        /* Review Marquee Hover Scale Effect */
+        .animate-marquee>div>div {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            transform-origin: center;
+        }
+
+        .animate-marquee>div>div:hover {
+            transform: scale(1.15);
+            z-index: 50;
+            box-shadow: 0 35px 60px -15px rgba(115, 88, 155, 0.5);
+        }
+
+        @media (min-width: 768px) {
+            .animate-marquee>div>div:hover {
+                transform: scale(1.5);
+            }
+        }
+
+        /* Vibrant Blob Animations */
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 10s infinite alternate ease-in-out;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div
+                        class="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-white border border-gold/20 shadow-sm">
+                        <img src="images/flower7.png" alt="Lavily Lotus Logo" class="w-full h-full object-contain"
+                            onerror="this.src='https://via.placeholder.com/48/73589b/ffffff?text=LL'">
+                    </div>
+                    <span class="text-3xl font-bold tracking-tight text-deep"
+                        style="font-family: 'Playfair Display', serif;">Lavily Lotus</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#collection" class="nav-link">Collection</a>
+                    <a href="gallery.html" class="nav-link">Gallery</a>
+                    <a href="#events" class="nav-link">Events</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-deep p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-cream border-t border-soft-purple/20 px-4 py-4 space-y-4 shadow-lg">
+            <a href="#home" class="block text-deep font-semibold">Home</a>
+            <a href="#about" class="block text-deep font-semibold">About Us</a>
+            <a href="#collection" class="block text-deep font-semibold">Collection</a>
+            <a href="gallery.html" class="block text-deep font-semibold">Gallery</a>
+            <a href="#events" class="block text-deep font-semibold">Events</a>
+            <a href="#contact" class="block text-deep font-semibold">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <!-- Hero Logo -->
+            <div class="mb-12 inline-block animate-subtle-bounce">
+                <div
+                    class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-white logo-shadow flex items-center justify-center border-4 border-gold mx-auto overflow-hidden p-4">
+                    <img src="images/flower7.png" alt="Lavily Lotus Official Logo" class="w-full h-full object-contain"
+                        onerror="this.src='https://via.placeholder.com/400/ffffff/73589b?text=Lavily+Lotus'">
+                </div>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 text-gold uppercase tracking-wider">Lavily Lotus</h1>
+
+            <div class="mb-6 space-y-2">
+                <p class="text-2xl md:text-3xl text-deep italic font-light">Lavily Lotus was born from friendship and
+                    creativity,</p>
+                <p class="text-2xl md:text-3xl text-deep italic font-light">and a love for the simple joys that make
+                    life beautiful.</p>
+            </div>
+
+            <!-- Moved text above the button -->
+            <p class="text-lg md:text-xl text-deep leading-relaxed max-w-2xl mx-auto italic opacity-90 mb-10">
+                Whether you’re curled up at home, making memories with loved ones, or celebrating a special occasion, we
+                want you to feel both cozy and confident.
+            </p>
+
+            <div class="mb-12">
+                <a href="#collection"
+                    class="btn-primary text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transform transition hover:-translate-y-1 inline-block text-lg uppercase tracking-widest">
+                    Explore the Collection
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-white/40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gold uppercase tracking-wider">Our Flower Partners</h2>
+                <p class="text-lg text-deep max-w-2xl mx-auto">
+                    We’re three friends who share an appreciation for comfort, style, and the natural world around us.
+                    Our shop name—Lavily Lotus—blends together three flowers we love.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Lavender -->
+                <div
+                    class="partner-card bg-white p-8 rounded-3xl shadow-sm border-b-4 border-[#ab95c8] text-center transform transition hover:-translate-y-2">
+                    <img src="images/flower2.png" alt="Lavender" class="partner-img"
+                        onerror="this.src='https://via.placeholder.com/140/ab95c8/ffffff?text=Fahreen'">
+                    <h3 class="text-2xl font-bold mb-3 uppercase tracking-wide">Lavender</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed italic mb-4">Calm • Trust • Natural Beauty</p>
+                    <p class="text-gray-700">Lavender (Fahreen) guides our mission to create products that soothe the
+                        soul, build lasting relationships, and celebrate meaningful moments.</p>
+                </div>
+                <!-- Lily -->
+                <div
+                    class="partner-card bg-white p-8 rounded-3xl shadow-sm border-b-4 border-[#e2b328] text-center transform transition hover:-translate-y-2">
+                    <img src="images/flower4.png" alt="Lily" class="partner-img"
+                        onerror="this.src='https://via.placeholder.com/140/e2b328/ffffff?text=Neeshma'">
+                    <h3 class="text-2xl font-bold mb-3 uppercase tracking-wide">Lily</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed italic mb-4">Elegance • Purity • Sophistication</p>
+                    <p class="text-gray-700">The lily (Neeshma) inspires our dedication to refined craftsmanship,
+                        ensuring that every gift reflects the depth of your sentiment.</p>
+                </div>
+                <!-- Lotus -->
+                <div
+                    class="partner-card bg-white p-8 rounded-3xl shadow-sm border-b-4 border-[#73589b] text-center transform transition hover:-translate-y-2">
+                    <img src="images/flower5.png" alt="Lotus" class="partner-img"
+                        onerror="this.src='https://via.placeholder.com/140/73589b/ffffff?text=Noorin'">
+                    <h3 class="text-2xl font-bold mb-3 uppercase tracking-wide">Lotus</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed italic mb-4">Growth • Resilience • Transformation
+                    </p>
+                    <p class="text-gray-700">The lotus (Noorin) symbolizes our commitment to mark fresh chapters and
+                        celebrate personal journeys rising beautifully from any circumstance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="collection" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 text-gold uppercase tracking-wider">Our Collection</h2>
+                <p class="text-deep italic text-xl">Hand-crafted joy in every detail.</p>
+            </div>
+
+
+            <!-- Evergreen / Inspirational -->
+            <div class="mt-8 mb-16">
+                <h3
+                    class="text-2xl font-bold border-b-2 border-gold inline-block pb-1 mb-8 uppercase tracking-widest text-deep">
+                    Evergreen / Inspirational</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="gallery-card col-span-2 row-span-2 shadow-xl">
+                        <span class="category-tag">Signature Basket</span>
+                        <img src="images/20251112_224800.jpg" alt="Basket"
+                            onerror="this.src='https://via.placeholder.com/800/73589b/ffffff?text=Sunshine+Basket'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_800x800.7713810913_9ier.png" alt="Enough"
+                            onerror="this.src='https://via.placeholder.com/400/ab95c8/ffffff?text=You+Are+Enough'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_800x800.7566084678_eg1f.png" alt="Gratitude"
+                            onerror="this.src='https://via.placeholder.com/400/ab95c8/ffffff?text=Gratitude'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_800x800.7431153198_4bht.png" alt="Be You"
+                            onerror="this.src='https://via.placeholder.com/400/ab95c8/ffffff?text=Be+You'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_800x800.7373389232_jb24.png" alt="Change"
+                            onerror="this.src='https://via.placeholder.com/400/ab95c8/ffffff?text=Be+the+Change'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Teacher</span>
+                        <img src="images/il_fullxfull.7909020788_6e04.png" alt="Teacher" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Teacher</span>
+                        <img src="images/il_fullxfull.7909080920_io0d.png" alt="Teacher" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Teacher</span>
+                        <img src="images/il_fullxfull.7933924707_p3vq.png" alt="Teacher" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Apron</span>
+                        <img src="images/il_794xN.7434667334_djdc.jpg" alt="Apron" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Apron</span>
+                        <img src="images/il_fullxfull.7620659271_dyk3.png" alt="Apron" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7225909272_e2x4.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7225910002_1qnb.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7273879021_6lwv.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7273879993_s3uk.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7273880815_hcp4.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7354817890_8ahy.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7366663062_gzex.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7665467009_fz6d.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7617524598_j4g9.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7617524604_2bwi.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Inspirational</span>
+                        <img src="images/il_794xN.7665466999_sxmx.jpg" alt="Inspirational" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Dancing Life</span>
+                        <img src="images/il_800x800.7366573082_epax.png" alt="Dancing"
+                            onerror="this.src='https://via.placeholder.com/400/f3f4f6/333?text=Dancing'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Defying Gravity</span>
+                        <img src="images/il_800x800.7410867377_renj.png" alt="Gravity"
+                            onerror="this.src='https://via.placeholder.com/400/f3f4f6/333?text=Gravity'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seasonal -->
+            <div class="mt-16 mb-16">
+                <h3
+                    class="text-2xl font-bold border-b-2 border-gold inline-block pb-1 mb-8 uppercase tracking-widest text-deep">
+                    Seasonal</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="gallery-card">
+                        <span class="category-tag">Diwali</span>
+                        <img src="images/IMG_5230.jpg" alt="Diwali">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Halloween</span>
+                        <img src="images/IMG_5239.png" alt="Halloween" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Sports</span>
+                        <img src="images/il_800x800.7968320441_c8df.png" alt="Hawks Fan"
+                            onerror="this.src='https://via.placeholder.com/400/002244/ffffff?text=Hawks'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Sports</span>
+                        <img src="images/il_800x800.7363531784_y4of.png" alt="Game Day"
+                            onerror="this.src='https://via.placeholder.com/400/004b23/ffffff?text=Game+Day'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Valentines</span>
+                        <img src="images/il_800x800.7643599899_cqb6.png" alt="LOVE Heart"
+                            onerror="this.src='https://via.placeholder.com/400/ffb3c1/ffffff?text=LOVE'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Valentines</span>
+                        <img src="images/il_800x800.7668136303_izsk.png" alt="Pouch"
+                            onerror="this.src='https://via.placeholder.com/400/ffb3c1/ffffff?text=Pouch'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Valentines</span>
+                        <img src="images/il_800x800.7643598463_r4l1.png" alt="Koala"
+                            onerror="this.src='https://via.placeholder.com/400/ffb3c1/ffffff?text=Koala'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Eid</span>
+                        <img src="images/il_794xN.7640403503_smxz.jpg" alt="Eid" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Fall</span>
+                        <img src="images/IMG_4964.png" alt="Fall" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Seasonal</span>
+                        <img src="images/IMG_4893.png" alt="Seasonal" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Valentine</span>
+                        <img src="images/il_1140xN.7643601465_muox.jpg" alt="Valentine" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessories -->
+            <div class="mt-16 mb-16">
+                <h3
+                    class="text-2xl font-bold border-b-2 border-gold inline-block pb-1 mb-8 uppercase tracking-widest text-deep">
+                    Accessories</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="gallery-card">
+                        <span class="category-tag">Travel Cases</span>
+                        <img src="images/il_800x800.7714042679_qrid.png" alt="Cases"
+                            onerror="this.src='https://via.placeholder.com/400/ab95c8/ffffff?text=Travel+Cases'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Strawberry</span>
+                        <img src="images/il_800x800.7997088747_19ve.png" alt="Strawberry"
+                            onerror="this.src='https://via.placeholder.com/400/ff4d6d/ffffff?text=Strawberry'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Eid Star Tote</span>
+                        <img src="images/il_600x600.7798238469_thsa.png" alt="Eid Tote"
+                            onerror="this.src='https://via.placeholder.com/400/ffffff/333?text=Eid+Star+Tote'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Floral Tote</span>
+                        <img src="images/il_600x600.7798271179_qyjr.png" alt="Floral Tote"
+                            onerror="this.src='https://via.placeholder.com/400/000000/ffffff?text=Floral+Tote'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Mandala Set</span>
+                        <img src="images/il_600x600.7842996000_cz1y.png" alt="Mandala Set"
+                            onerror="this.src='https://via.placeholder.com/400/e2b328/ffffff?text=Mandala+Set'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Accessories</span>
+                        <img src="images/il_794xN.7712349204_nkg6.jpg" alt="Accessories" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Accessories</span>
+                        <img src="images/il_794xN.7714054179_ayfp.jpg" alt="Accessories" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Accessories</span>
+                        <img src="images/il_794xN.7666099840_2nce.jpg" alt="Accessories" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Accessories</span>
+                        <img src="images/il_794xN.7666094894_kji0.jpg" alt="Accessories" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Accessories</span>
+                        <img src="images/il_794xN.7758099453_g6rm.jpg" alt="Accessories" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apparel -->
+            <div class="mt-16 mb-16">
+                <h3
+                    class="text-2xl font-bold border-b-2 border-gold inline-block pb-1 mb-8 uppercase tracking-widest text-deep">
+                    Apparel</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="gallery-card">
+                        <span class="category-tag">Custom Logo</span>
+                        <img src="images/il_600x600.7675006563_k71z.png" alt="Custom Zip"
+                            onerror="this.src='https://via.placeholder.com/400/333333/ffffff?text=Logo+Zip'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Custom Tee</span>
+                        <img src="images/il_600x600.7835804807_p98d.png" alt="Custom Tee"
+                            onerror="this.src='https://via.placeholder.com/400/000080/ffffff?text=Custom+Tee'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Custom Sweatshirt</span>
+                        <img src="images/il_600x600.7930386568_m89i.png" alt="Custom Sweatshirt"
+                            onerror="this.src='https://via.placeholder.com/400/222222/ffffff?text=Custom+Sweat'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Custom Hoodie</span>
+                        <img src="images/il_600x600.7934845018_rzq7.png" alt="Custom Hoodie"
+                            onerror="this.src='https://via.placeholder.com/400/111111/ffffff?text=Custom+Hoodie'">
+                    </div>
+
+                    <div class="gallery-card">
+                        <span class="category-tag">Baby Outfit</span>
+                        <img src="images/il_fullxfull.8004395429_8drw.png" alt="Baby Outfit" loading="lazy">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Apron</span>
+                        <img src="images/il_794xN.7495859022_sm0l.jpg" alt="Apron" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plush -->
+            <div class="mt-16 mb-16">
+                <h3
+                    class="text-2xl font-bold border-b-2 border-gold inline-block pb-1 mb-8 uppercase tracking-widest text-deep">
+                    Plush</h3>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="gallery-card">
+                        <span class="category-tag">Boba</span>
+                        <img src="images/il_800x800.7920375034_y33y.jpg" alt="Boba"
+                            onerror="this.src='https://via.placeholder.com/400/e0c3fc/333?text=Boba'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Latte</span>
+                        <img src="images/il_800x800.7592418542_nucs.jpg" alt="Latte"
+                            onerror="this.src='https://via.placeholder.com/400/f3f4f6/333?text=Latte'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Avocado</span>
+                        <img src="images/il_800x800.7960742127_59bv.jpg" alt="Avocado"
+                            onerror="this.src='https://via.placeholder.com/400/d8f3dc/333?text=Avocado'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Bagel</span>
+                        <img src="images/il_800x800.7910570186_eut6.jpg" alt="Bagel"
+                            onerror="this.src='https://via.placeholder.com/400/f3f4f6/333?text=Bagel'">
+                    </div>
+                    <div class="gallery-card">
+                        <span class="category-tag">Cupcake</span>
+                        <img src="images/il_800x800.7640377381_85g7.png" alt="Cupcake"
+                            onerror="this.src='https://via.placeholder.com/400/f3f4f6/333?text=Cupcake'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Deep Link Section -->
+            <div class="mt-20 text-center bg-white/60 p-12 rounded-[3rem] border border-gold/20 shadow-inner">
+                <h3 class="text-4xl font-bold text-deep mb-6 uppercase tracking-wider">Ready to find your joy?</h3>
+                <p class="text-gray-600 mb-10 max-w-xl mx-auto text-lg">
+                    Discover our full range of personalized gifts, apparel, and accessories on our official
+                    storefront.<br>
+                    Every piece is crafted with love and waiting for its new home.
+                </p>
+                <a href="https://www.etsy.com/shop/lavilylotus" target="_blank"
+                    class="btn-primary text-white px-12 py-5 rounded-full font-bold shadow-xl hover:shadow-2xl transform transition hover:-translate-y-1 inline-flex items-center gap-4 text-xl uppercase tracking-widest">
+                    <span>Go to Lavily Lotus Shop</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Joyful CTA Section -->
+            <div class="mt-16 text-center">
+                <p class="text-deep font-semibold text-2xl mb-4">Have a unique vision in mind?</p>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto text-lg">We absolutely love bringing new ideas to life!
+                    If you're looking for a one-of-a-kind treasure tailored just for you, we're here to help.</p>
+                <a href="#contact"
+                    class="text-deep font-bold border-b-2 border-deep hover:text-gold hover:border-gold transition pb-1 uppercase tracking-widest text-sm">Request
+                    a Custom Order →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-32 md:py-48 bg-white/40 overflow-hidden flex flex-col justify-center min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 mb-12 text-center relative z-20">
+            <h2 class="text-4xl font-bold mb-4 text-gold uppercase tracking-wider">Customer Love</h2>
+            <p class="text-lg text-deep italic">What our beautiful community is saying</p>
+        </div>
+
+        <div class="relative w-full">
+            <!-- Fade overlays for smooth entry/exit edges -->
+            <div
+                class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[var(--cream)] to-transparent z-20 pointer-events-none">
+            </div>
+            <div
+                class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[var(--cream)] to-transparent z-20 pointer-events-none">
+            </div>
+
+            <div class="flex w-max animate-marquee items-center">
+                <!-- Original Set -->
+                <div class="flex gap-8 px-4 flex-shrink-0 w-max">
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR1.png" alt="Review 1" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR2.png" alt="Review 2" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR3.png" alt="Review 3" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR4.png" alt="Review 4" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR5.png" alt="Review 5" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR6.png" alt="Review 6" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR7.png" alt="Review 7" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR8.png" alt="Review 8" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR9.png" alt="Review 9" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR10.png" alt="Review 10" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR11.png" alt="Review 11" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR12.png" alt="Review 12" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR13.png" alt="Review 13" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR14.png" alt="Review 14" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR15.png" alt="Review 15" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR17.png" alt="Review 16" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                </div>
+
+                <!-- Duplicate Set for Seamless Loop -->
+                <div class="flex gap-8 px-4 flex-shrink-0 w-max">
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR1.png" alt="Review 1" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR2.png" alt="Review 2" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR3.png" alt="Review 3" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR4.png" alt="Review 4" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR5.png" alt="Review 5" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR6.png" alt="Review 6" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR7.png" alt="Review 7" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR8.png" alt="Review 8" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR9.png" alt="Review 9" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR10.png" alt="Review 10" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR11.png" alt="Review 11" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR12.png" alt="Review 12" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR13.png" alt="Review 13" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR14.png" alt="Review 14" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR15.png" alt="Review 15" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                    <div
+                        class="w-[350px] md:w-[500px] h-[500px] md:h-[600px] flex-shrink-0 rounded-3xl overflow-hidden shadow-lg border border-soft-purple/20 bg-white">
+                        <img src="images/RR17.png" alt="Review 16" class="w-full h-full object-contain p-4"
+                            loading="lazy"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Services Section -->
+    <section id="custom-services"
+        class="py-24 relative overflow-hidden bg-gradient-to-br from-cream/30 via-white to-soft-purple/10">
+        <!-- Vibrant Background Blobs -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+            <div
+                class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-soft-purple/20 blur-[100px] animate-blob">
+            </div>
+            <div
+                class="absolute top-[20%] -right-[10%] w-[40%] h-[60%] rounded-full bg-gold/20 blur-[120px] animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute -bottom-[20%] left-[20%] w-[60%] h-[50%] rounded-full bg-deep/5 blur-[100px] animate-blob animation-delay-4000">
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-20 relative">
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-32 bg-gold/20 blur-[80px] pointer-events-none">
+                </div>
+                <h2 class="relative text-4xl md:text-5xl font-bold mb-4 text-gold uppercase tracking-wider">
+                    Custom Services We Offer</h2>
+                <p class="relative text-xl text-deep/80 italic font-light max-w-2xl mx-auto">Personalized touches to
+                    make your special moments truly unforgettable.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-16">
+                <!-- Weddings -->
+                <div
+                    class="group relative bg-white/60 backdrop-blur-xl p-10 md:p-12 rounded-[2.5rem] shadow-xl border border-white/50 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_-15px_rgba(171,149,200,0.5)] overflow-hidden">
+                    <div
+                        class="absolute -top-6 -right-6 p-8 opacity-5 transform transition-transform duration-700 group-hover:scale-125 group-hover:rotate-12 pointer-events-none">
+                        <svg class="w-48 h-48 text-deep" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                    </div>
+
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 mb-8 rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center border border-gold/30 shadow-inner group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
+                            <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-3xl font-bold text-deep uppercase tracking-wide mb-4 group-hover:text-gold transition-colors duration-300">
+                            Weddings</h3>
+                        <div
+                            class="w-12 h-1 bg-gradient-to-r from-gold to-gold/20 rounded-full mb-6 group-hover:w-24 transition-all duration-500">
+                        </div>
+                        <p class="text-[1.1rem] text-gray-600 leading-[1.8] font-light text-left">
+                            We specialize in making your big day completely magical. From customized wedding favors to beautifully arranged bespoke baskets, we handle every detail with pure elegance and love.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Party Pop-ups -->
+                <div
+                    class="group relative bg-white/60 backdrop-blur-xl p-10 md:p-12 rounded-[2.5rem] shadow-xl border border-white/50 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.4)] overflow-hidden">
+                    <div
+                        class="absolute -top-6 -right-6 p-8 opacity-5 transform transition-transform duration-700 group-hover:scale-125 group-hover:-rotate-12 pointer-events-none">
+                        <svg class="w-48 h-48 text-gold" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                        </svg>
+                    </div>
+
+                    <div class="relative z-10">
+                        <div
+                            class="w-16 h-16 mb-8 rounded-2xl bg-gradient-to-br from-soft-purple/30 to-soft-purple/5 flex items-center justify-center border border-soft-purple/30 shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                            <svg class="w-8 h-8 text-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-3xl font-bold text-deep uppercase tracking-wide mb-4 group-hover:text-soft-purple transition-colors duration-300">
+                            Party Pop-ups</h3>
+                        <div
+                            class="w-12 h-1 bg-gradient-to-r from-soft-purple to-soft-purple/20 rounded-full mb-6 group-hover:w-24 transition-all duration-500">
+                        </div>
+                        <p class="text-[1.1rem] text-gray-600 leading-[1.8] font-light text-left">
+                            Looking for a unique, unforgettable activity for your next party? We bring the creativity to you! We offer on-the-spot customization for t-shirts, accessories, and gifts at your special event.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="mt-20 text-center relative z-20">
+                <a href="#contact"
+                    class="inline-flex items-center gap-3 bg-gradient-to-r from-deep to-soft-purple text-cream px-10 py-5 rounded-full font-bold uppercase tracking-wider shadow-xl hover:shadow-[0_15px_40px_-10px_rgba(171,149,200,0.8)] transform transition-all duration-300 hover:-translate-y-1 group">
+                    <span>Request a Custom Quote</span>
+                    <svg class="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-2"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events & Markets Section -->
+    <section id="events" class="py-20 text-white relative overflow-hidden"
+        style="background-color: var(--deep-purple);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-cream uppercase tracking-wider">Events and Markets
+                    we've been to</h2>
+                <p class="text-xl text-cream/90 italic font-light max-w-2xl mx-auto">Take a glimpse into our creative
+                    journey and the lovely communities we've visited.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <div
+                    class="bg-white/10 p-3 md:p-4 rounded-[2rem] shadow-2xl backdrop-blur-sm border border-white/20 transform transition hover:scale-[1.02] duration-500 flex flex-col">
+                    <div
+                        class="rounded-[1.5rem] overflow-hidden bg-black/20 flex justify-center items-center shadow-inner relative flex-grow">
+                        <video src="images/A544F92D-6A08-469B-84FE-86D5ACE25430.MOV" controls playsinline
+                            class="w-full max-h-[60vh] object-contain rounded-[1.5rem]"></video>
+                    </div>
+                    <div class="mt-4 text-center pb-2">
+                        <p class="text-cream font-medium tracking-wide text-lg">Meena Bazaar</p>
+                        <p class="text-cream/90 text-sm">Bellevue, WA</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-white/10 p-3 md:p-4 rounded-[2rem] shadow-2xl backdrop-blur-sm border border-white/20 transform transition hover:scale-[1.02] duration-500 flex flex-col">
+                    <div
+                        class="rounded-[1.5rem] overflow-hidden bg-black/20 flex justify-center items-center shadow-inner relative flex-grow">
+                        <video src="images/IMG_6637.MOV" controls playsinline
+                            class="w-full max-h-[60vh] object-contain rounded-[1.5rem]"></video>
+                    </div>
+                    <div class="mt-4 text-center pb-2">
+                        <p class="text-cream font-medium tracking-wide text-lg">Holiday Market</p>
+                        <p class="text-cream/90 text-sm">Bellevue, WA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gold uppercase tracking-wider">Get in touch</h2>
+                <p class="text-deep italic">Have a question or a custom order in mind? We'd love to hear from you.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-soft-purple/10">
+                <form id="contact-form" class="space-y-6">
+                    <!-- Web3Forms Hidden Inputs -->
+                    <input type="hidden" name="access_key" value="053402a4-842f-4e1a-8d56-fbaf9c5b004b">
+                    <input type="hidden" name="subject" value="New Lavily Lotus Contact Form Submission">
+                    <input type="checkbox" name="botcheck" id="" style="display: none;">
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-deep mb-2 uppercase tracking-wide"
+                                for="name">
+                                Name<span class="required-star">*</span>
+                            </label>
+                            <input type="text" id="name" name="name" required class="form-input"
+                                placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-deep mb-2 uppercase tracking-wide"
+                                for="email">
+                                Email<span class="required-star">*</span>
+                            </label>
+                            <input type="email" id="email" name="email" required class="form-input"
+                                placeholder="hello@example.com">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-deep mb-2 uppercase tracking-wide"
+                                for="project">Project</label>
+                            <select id="project" name="project"
+                                class="form-input bg-white appearance-none cursor-pointer">
+                                <option value="" disabled selected>Select project type</option>
+                                <option value="custom_baskets">Custom Baskets</option>
+                                <option value="t_shirts">T-shirts</option>
+                                <option value="hats">Hats</option>
+                                <option value="sweatshirts">Sweatshirts</option>
+                                <option value="aprons">Aprons</option>
+                                <option value="plushies">Plushies</option>
+                                <option value="other">Other Custom Projects</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-deep mb-2 uppercase tracking-wide"
+                                for="quantity">Approx. Quantity</label>
+                            <select id="quantity" name="quantity"
+                                class="form-input bg-white appearance-none cursor-pointer">
+                                <option value="" disabled selected>How many items?</option>
+                                <option value="1-5">1 - 5</option>
+                                <option value="6-20">6 - 20</option>
+                                <option value="21-50">21 - 50</option>
+                                <option value="51-100">51 - 100</option>
+                                <option value="100+">100+</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-deep mb-2 uppercase tracking-wide"
+                                for="date">When do you need it by?</label>
+                            <input type="date" id="date" name="date" class="form-input">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-deep mb-2 uppercase tracking-wide" for="message">
+                            Your Vision or Message<span class="required-star">*</span>
+                        </label>
+                        <textarea id="message" name="message" rows="5" required class="form-input"
+                            placeholder="Tell us about your custom order ideas..."></textarea>
+                    </div>
+
+                    <!-- Email Opt-in Checkbox -->
+                    <div class="flex items-start gap-3 px-1">
+                        <input type="checkbox" id="marketing" name="marketing" class="form-checkbox mt-1">
+                        <label for="marketing" class="text-sm text-deep leading-snug cursor-pointer">
+                            I'd like to be added to the mailing list for updates on specials, new items, and events.
+                        </label>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button type="submit"
+                            class="btn-primary text-white px-10 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 uppercase tracking-widest">
+                            Send Request
+                        </button>
+                    </div>
+                </form>
+                <div id="form-success"
+                    class="hidden mt-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl text-center">
+                    Thank you! Your message has been sent. We'll get back to you soon.
+                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <h3 class="text-4xl font-bold mb-8 text-deep uppercase tracking-widest">Follow our journey</h3>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://www.etsy.com/shop/lavilylotus" target="_blank"
+                        class="flex flex-col items-center group">
+                        <div class="social-icon-wrapper">
+                            <span class="text-3xl font-bold" style="font-family: 'Playfair Display', serif;">E</span>
+                        </div>
+                        <span class="text-xs mt-2 font-bold text-deep tracking-wider uppercase">Etsy Shop</span>
+                    </a>
+                    <a href="https://www.instagram.com/lavily.lotus/" target="_blank"
+                        class="flex flex-col items-center group">
+                        <div class="social-icon-wrapper">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <span class="text-xs mt-2 font-bold text-deep tracking-wider uppercase">Instagram</span>
+                    </a>
+                    <a href="https://www.facebook.com/p/Lavily-Lotus-61581597643588/" target="_blank"
+                        class="flex flex-col items-center group">
+                        <div class="social-icon-wrapper">
+                            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </div>
+                        <span class="text-xs mt-2 font-bold text-deep tracking-wider uppercase">Facebook</span>
+                    </a>
+                    <a href="https://www.pinterest.com/Lavilylotus/" target="_blank"
+                        class="flex flex-col items-center group">
+                        <div class="social-icon-wrapper">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.091.375-.293 1.199-.334 1.363-.053.211-.174.256-.402.151-1.5-.698-2.442-2.888-2.442-4.647 0-3.783 2.749-7.257 7.924-7.257 4.16 0 7.393 2.963 7.393 6.926 0 4.132-2.607 7.456-6.227 7.456-1.216 0-2.359-.631-2.75-1.376l-.748 2.853c-.271 1.033-1.002 2.324-1.492 3.121 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" />
+                            </svg>
+                        </div>
+                        <span class="text-xs mt-2 font-bold text-deep tracking-wider uppercase">Pinterest</span>
+                    </a>
+                </div>
+
+                <div class="mt-12 text-center border-t border-soft-purple/10 pt-8">
+                    <div class="flex justify-center space-x-6 mb-4 text-xs text-deep/60 tracking-wider uppercase">
+                        <a href="privacy.html" class="hover:text-gold transition">Privacy Policy</a>
+                        <a href="#" class="hover:text-gold transition">Terms of Service</a>
+                    </div>
+                    <p class="text-xs text-deep/60 tracking-wider">© 2026 Lavily Lotus. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+        </footer>
+
+        <script>
+            const menuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            document.querySelectorAll('#mobile-menu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('form-success');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const object = Object.fromEntries(formData);
+                const json = JSON.stringify(object);
+
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.innerHTML = "Sending...";
+                submitBtn.disabled = true;
+
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        form.classList.add('hidden');
+                        successMsg.classList.remove('hidden');
+                        successMsg.innerHTML = "Thank you! Your message has been sent successfully. We'll get back to you soon.";
+                        form.reset();
+                    } else {
+                        successMsg.classList.remove('hidden');
+                        successMsg.classList.remove('text-green-700', 'bg-green-50', 'border-green-200');
+                        successMsg.classList.add('text-red-700', 'bg-red-50', 'border-red-200');
+                        successMsg.innerHTML = "Oops! Something went wrong. Please try again.";
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    successMsg.classList.remove('hidden');
+                    successMsg.classList.remove('text-green-700', 'bg-green-50', 'border-green-200');
+                    successMsg.classList.add('text-red-700', 'bg-red-50', 'border-red-200');
+                    successMsg.innerHTML = "Oops! Something went wrong. Please check your connection.";
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                });
+            });
+
+
+        </script>
+</body>
+
+</html>
